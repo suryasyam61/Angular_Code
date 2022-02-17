@@ -11,10 +11,8 @@ export class HelloComponent implements OnInit {
   ngOnInit(): void {
     this.getData();
   }
-  
   data:any;
-  zcode!: number;
-  url2='http://api.openweathermap.org/data/2.5/forecast?lat=35&lon=139&appid=5a4b2d457ecbef9eb2a71e480b947604';
+  url2='http://api.openweathermap.org/data/2.5/forecast?id=';
   ccond1!: number;    temp_max1!: number;      temp_min1!: number;
   ccond2!: number;    temp_max2!: number;      temp_min2!: number;
   ccond3!: number;    temp_max3!: number;      temp_min3!: number;
@@ -29,7 +27,10 @@ month=["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec
   constructor(private http: HttpClient) {}
 
   getData() {
-    this.http.get(this.url2).subscribe((res) => {
+    
+    let zcode1 = localStorage.getItem('Code ');
+    console.log("    jhdvhfj   zocde" + zcode1)
+    this.http.get(this.url2+zcode1+'&appid=5a4b2d457ecbef9eb2a71e480b947604').subscribe((res) => {
       this.data = res;
       this.ccond1 = this.data.list[0].weather[0].main;
       this.temp_max1 = this.data.list[0].main.temp_max;
