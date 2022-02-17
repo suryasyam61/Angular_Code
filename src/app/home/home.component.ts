@@ -17,11 +17,11 @@ export class HomeComponent implements OnInit {
   }
   constructor(private http: HttpClient) {}
 
-    setZip(zipcode:any) {
+        setZip(zipcode:any) {
         this.zcode = zipcode;
-        localStorage.setItem('ZipCode : ', zipcode);
-        this.getData();
-    }
+          localStorage.setItem('Code ', zipcode);
+          this.getData()
+        }
     getData() {
         this.http.get(this.url + this.zcode+'&appid=5a4b2d457ecbef9eb2a71e480b947604').subscribe((res) => {
           this.data = res;
