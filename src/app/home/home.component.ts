@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   zipCode:any
   data:any;
   zcode!: number;
-  url = 'http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=5a4b2d457ecbef9eb2a71e480b947604';
+  url = 'http://api.openweathermap.org/data/2.5/weather?id=';
   ccond!: number;      temp!: number;      temp_max!: number;      temp_min!: number;
   ngOnInit(): void {
       
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
         this.getData();
     }
     getData() {
-        this.http.get(this.url).subscribe((res) => {
+        this.http.get(this.url + this.zcode+'&appid=5a4b2d457ecbef9eb2a71e480b947604').subscribe((res) => {
           this.data = res;
           this.ccond = this.data.weather[0].main;
           this.temp = this.data.main.temp;
